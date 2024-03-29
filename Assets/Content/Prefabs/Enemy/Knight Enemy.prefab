@@ -362,6 +362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 4921901369058667276}
+  m_AttackStates:
+  - {fileID: 4675525191741054146}
   m_FindNearestPlayerTime: 3
 --- !u!114 &7611009695071939515
 MonoBehaviour:

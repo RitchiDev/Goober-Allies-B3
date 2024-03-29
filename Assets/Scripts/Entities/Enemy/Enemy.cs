@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     [Header("Attack")]
     private bool m_AttackIsOnCooldown;
     private IEnumerator m_AttackCooldownCoroutine;
-    private List<EnemyAttackState> m_AttackStates = new List<EnemyAttackState>();
+    [SerializeField] private List<EnemyAttackState> m_AttackStates = new List<EnemyAttackState>();
 
     [Header("Target")]
     private Player m_TargetPlayer;
@@ -32,7 +32,9 @@ public class Enemy : MonoBehaviour
         System.Type startState = typeof(EnemyIdleState);
         m_FSM = new FSM(startState, statesOnGameObject);
 
-        m_AttackStates = GetComponents<EnemyAttackState>().ToList();
+        //m_AttackStates = GetComponents<EnemyAttackState>().ToList();
+        //m_AttackStates.AddRange(m_AttackStates);
+        //Debug.Log(m_AttackStates);
 
         m_TargetPlayer = PlayerManager.Instance.GetClosestPlayer(transform.position);
 
@@ -82,6 +84,8 @@ public class Enemy : MonoBehaviour
     public void EndBattle()
     {
         m_IsInbattle = false;
+
+        m_FSM.SwitchState(typeof(EnemyIdleState));
     }
 
     public void AttackPlayer()

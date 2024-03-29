@@ -344,6 +344,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2253212267797871867}
   - {fileID: 3319192505880996579}
   - {fileID: 6597137758270610040}
   m_Father: {fileID: 0}
@@ -362,6 +363,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 4921901369058667276}
+  m_AttackStates:
+  - {fileID: 4675525191741054146}
+  - {fileID: 1061659801368407802}
+  - {fileID: 4675525191741054146}
+  - {fileID: 1061659801368407802}
   m_FindNearestPlayerTime: 3
 --- !u!114 &7611009695071939515
 MonoBehaviour:
@@ -579,6 +585,66 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4635858628279663365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2253212267797871867}
+  - component: {fileID: 1061659801368407802}
+  m_Layer: 8
+  m_Name: HealState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2253212267797871867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4635858628279663365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4428273347527676626}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1061659801368407802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4635858628279663365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b46ff87d79b3e4a9d7571a1b5fd7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animation:
+    m_SpriteRenderer: {fileID: 0}
+    m_AnimationSpeed: 12
+    m_Frames: []
+    m_OnLoopPointReachedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  m_Enemy: {fileID: 5190586183693480583}
+  m_AttackDamage: 0
+  m_DamageMargin: 1
+  m_AttackDuration: 0.2
+  m_AttackEffect: {fileID: 719768016856225162}
+  m_TextPopUpPrefab: {fileID: 5277730742804974484, guid: a5f8341f963757f4e8214c05ecf6dcb1, type: 3}
+  m_TextPopUpColor: {r: 0.53333336, g: 0, b: 1, a: 1}
+  m_HealAmount: 5
+  m_Health: {fileID: 7611009695071939515}
 --- !u!1 &5207394664236117791
 GameObject:
   m_ObjectHideFlags: 0

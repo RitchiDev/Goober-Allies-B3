@@ -44,6 +44,7 @@ public class Player : MonoBehaviour, IPowerUpable
     private IEnumerator m_AttackCooldownCoroutine;
 
     [Header("Run")]
+    [SerializeField] private int m_DamageOnRun = 5;
     [SerializeField] private int m_RunStrength = 3;
 
     [Header("Defend")]
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour, IPowerUpable
 
     [Header("Battle")]
     [SerializeField] private GameObject m_BattleUIContainer;
+    private Enemy m_EnemyInBattle;
     private IDamageable m_DamageableEnemy;
     private Transform m_DamageableEnemyTransform;
     private bool m_IsInbattle;
@@ -161,6 +163,7 @@ public class Player : MonoBehaviour, IPowerUpable
         ButtonsSetInteractable();
         GameEventManager.AddListener(GameEventType.OnEnemyAttackEnded, ButtonsSetInteractable);
 
+        m_EnemyInBattle = enemy;
         m_DamageableEnemy = enemy.GetComponent<IDamageable>();
         m_DamageableEnemyTransform = enemy.transform;
 
@@ -173,6 +176,7 @@ public class Player : MonoBehaviour, IPowerUpable
         ButtonsSetNonInteractive();
         GameEventManager.RemoveListener(GameEventType.OnEnemyAttackEnded, ButtonsSetInteractable);
 
+        m_EnemyInBattle = null;
         m_DamageableEnemy = null;
         m_DamageableEnemyTransform = null;
 
@@ -182,17 +186,19 @@ public class Player : MonoBehaviour, IPowerUpable
 
     public void RunFromBattle()
     {
+        m_Health.TakeDamage(m_DamageOnRun);
         ButtonsSetNonInteractive();
         GameEventManager.RemoveListener(GameEventType.OnEnemyAttackEnded, ButtonsSetInteractable);
 
         m_BattleUIContainer.SetActive(false);
 
-        m_FSM.SwitchState(typeof(PlayerMovingState));
-
+        m_EnemyInBattle.EndBattle();
         m_DamageableEnemy = null;
         m_DamageableEnemyTransform = null;
 
         m_IsInbattle = false;
+
+        m_FSM.SwitchState(typeof(PlayerMovingState));
     }
 
     /// <summary>
@@ -228,7 +234,7 @@ public class Player : MonoBehaviour, IPowerUpable
 
     public Vector3 GetRunDirection()
     {
-        Vector3 direction = transform.position - m_DamageableEnemyTransform.position;
+        Vector3 direction = transform.forward;
         Vector3 multy = new Vector3(m_RunStrength, m_RunStrength, m_RunStrength);
 
         return Vector3.Scale(direction, multy);

@@ -23,7 +23,7 @@ public class HealPowerUp : MonoBehaviour
         }
 
         TextPopUp textPopUp = Instantiate(m_TextPopUpPrefab, transform.position, Quaternion.identity);
-        textPopUp.SetText($"Enemy healed for: {m_HealAmount} amount!");
+        textPopUp.SetText($"Player healed for: {m_HealAmount} amount!");
         textPopUp.SetColor(m_TextPopUpColor);
 
         healable.ReceiveHealing(m_HealAmount);

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d88a635c00f334d9eec6f319313b05, type: 3}
   m_Name: Elf
   m_EditorClassIdentifier: 
-  m_EnemyPrefab: {fileID: 4518513531403421269, guid: 7dbc91e31e7097a4a9ba75778a34428d, type: 3}
-  m_SpawnChance: 0.3
+  m_EnemyPrefab: {fileID: 6985389910900959030, guid: 7dbc91e31e7097a4a9ba75778a34428d, type: 3}
+  m_SpawnChance: 0.2
